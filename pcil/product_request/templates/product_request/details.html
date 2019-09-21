@@ -1,0 +1,36 @@
+
+<!-- <img src="{{product.name}}"></img> -->
+
+
+{% if error_message %}
+	<p><strong>{{error_message}}</strong></p>
+{% endif %}
+
+<form action="{%url 'product_request:favorite' product.id%}" method="post">
+	{% csrf_token %}
+	Enter your name: <input id="your_number" type="text" string="Enter your phone number" name="your_number" value="{{ phone_number }}" required="1">
+	<br><br>
+	Enter your contact number: <input id="your_name" type="text" string="Enter your name" name="your_name" value="{{ name }}" required="1">
+	<br>
+	<h1>{{product.name}} Products</h1>  
+	{% for product_requisition in product.product_requisition_set.all%}
+		<input type="radio" id="product_requisition{{forloop.counter}}" 
+		       name="product_requisition" value="{{song.id}}" required="1"/> 
+		<label for="product_requisition{{ forloop.counter }}">
+			{{product_requisition.sub_product_name}}
+			{% if product_requisition.is_favorite %}
+				<img src="http://i.imgur.com/b9b13Rd.png"/>
+			{% endif %}
+		</label>
+		<br>
+	{%endfor%}
+	<br>
+	<input type="submit" value="Select">
+
+<!-- <ul>
+	{% for product_requisition in product.product_requisition_set.all%}
+	<li>{{product_requisition.sub_product_name}}</li>
+	{%endfor%}
+</ul> -->
+
+

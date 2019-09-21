@@ -1,0 +1,10 @@
+<h1> Select the product category </h1>
+{%if all_products%}
+	<ul>
+		{% for product in all_products%}
+		<li><a href="{% url 'product_request:details' product.id%}">{{product.name}}</a></li>
+		{%endfor%}
+	</ul>
+{%else%}
+	<h3>No categories to display!</h3>
+{%endif%}
